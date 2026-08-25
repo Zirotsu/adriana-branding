@@ -1,0 +1,46 @@
+name: Update Instagram link
+
+on:
+  push:
+    paths:
+      - '.github/workflows/update-instagram-link.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-instagram:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Update only Instagram URL
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+          old = '<li><a href="#" data-cursor="hover">Instagram</a></li>'
+          new = '<li><a href="https://www.instagram.com/adriana.branding?igsi=MTBmMGRqbjdudnF1bA==" data-cursor="hover">Instagram</a></li>'
+
+          count = text.count(old)
+          if count != 1:
+              raise RuntimeError(f'Expected exactly 1 Instagram placeholder, found {count}')
+
+          path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
+
+      - name: Commit change
+        shell: bash
+        run: |
+          rm -f .github/workflows/update-instagram-link.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Fix Adriana Branding Instagram link"
+          git push origin HEAD:main
