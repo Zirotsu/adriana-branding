@@ -17,71 +17,26 @@ jobs:
 
       - name: Replace CTA contact button with icons
         shell: bash
+        env:
+          OLD_B64: ICAgICAgICA8YSBocmVmPSJtYWlsdG86YWRyaWFuYWJyYW5kaW5ncGVAZ21haWwuY29tIiBjbGFzcz0iY3RhX19lbWFpbCIgZGF0YS1jdXJzb3I9ImhvdmVyIj5hZHJpYW5hYnJhbmRpbmdwZUBnbWFpbC5jb208L2E+
+          NEW_B64: ICAgICAgICA8ZGl2IGNsYXNzPSJjdGFfX3NvY2lhbHMiIGFyaWEtbGFiZWw9IkNhbmFsZXMgZGUgY29udGFjdG8iPgogICAgICAgICAgICA8YSBocmVmPSJtYWlsdG86YWRyaWFuYWJyYW5kaW5ncGVAZ21haWwuY29tIiBjbGFzcz0iY3RhX19zb2NpYWwtbGluayIgZGF0YS1jdXJzb3I9ImhvdmVyIiBhcmlhLWxhYmVsPSJFbnZpYXIgY29ycmVvIGEgQWRyaWFuYSBCcmFuZGluZyIgdGl0bGU9IkNvcnJlbyI+CiAgICAgICAgICAgICAgICA8c3ZnIHZpZXdCb3g9IjAgMCAyNCAyNCIgYXJpYS1oaWRkZW49InRydWUiPjxwYXRoIGQ9Ik0zIDVoMTh2MTRIM1Y1Wm0yIDJ2LjZsNyA1LjI1IDctNS4yNVY3SDVabTE0IDEwVjEwLjFsLTcgNS4yNS03LTUuMjVWMTdoMTRaIi8+PC9zdmc+CiAgICAgICAgICAgIDwvYT4KICAgICAgICAgICAgPGEgaHJlZj0iaHR0cHM6Ly93d3cuaW5zdGFncmFtLmNvbS9hZHJpYW5hLmJyYW5kaW5nP2lnc2k9TVRCbU1HUnFiamR1ZG5GMWJBPT0iIGNsYXNzPSJjdGFfX3NvY2lhbC1saW5rIiBkYXRhLWN1cnNvcj0iaG92ZXIiIGFyaWEtbGFiZWw9Ikluc3RhZ3JhbSBkZSBBZHJpYW5hIEJyYW5kaW5nIiB0aXRsZT0iSW5zdGFncmFtIiB0YXJnZXQ9Il9ibGFuayIgcmVsPSJub29wZW5lciBub3JlZmVycmVyIj4KICAgICAgICAgICAgICAgIDxzdmcgdmlld0JveD0iMCAwIDI0IDI0IiBhcmlhLWhpZGRlbj0idHJ1ZSI+PHBhdGggZD0iTTcuNSAyaDlBNS41IDUuNSAwIDAgMSAyMiA3LjV2OWE1LjUgNS41IDAgMCAxLTUuNSA1LjVoLTlBNS41IDUuNSAwIDAgMSAyIDE2LjV2LTlBNS41IDUuNSAwIDAgMSA3LjUgMlptMCAyQTMuNSAzLjUgMCAwIDAgNCA3LjV2OUEzLjUgMy41IDAgMCAwIDcuNSAyMGg5YTMuNSAzLjUgMCAwIDAgMy41LTMuNXYtOUEzLjUgMy41IDAgMCAwIDE2LjUgNGgtOVpNMTcgNS41YTEuMjUgMS4yNSAwIDEgMSAwIDIuNSAxLjI1IDEuMjUgMCAwIDEgMC0yLjVaTTEyIDdhNSA1IDAgMSAxIDAgMTAgNSA1IDAgMCAxIDAtMTBabTAgMmEzIDMgMCAxIDAgMCA2IDMgMyAwIDAgMCAwLTZaIi8+PC9zdmc+CiAgICAgICAgICAgIDwvYT4KICAgICAgICAgICAgPGEgaHJlZj0iaHR0cHM6Ly93YS5tZS81MTk0MDcwODE2MSIgY2xhc3M9ImN0YV9fc29jaWFsLWxpbmsiIGRhdGEtY3Vyc29yPSJob3ZlciIgYXJpYS1sYWJlbD0iV2hhdHNBcHAgZGUgQWRyaWFuYSBCcmFuZGluZzogKzUxIDk0MCA3MDggMTYxIiB0aXRsZT0iV2hhdHNBcHAiIHRhcmdldD0iX2JsYW5rIiByZWw9Im5vb3BlbmVyIG5vcmVmZXJyZXIiPgogICAgICAgICAgICAgICAgPHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIGFyaWEtaGlkZGVuPSJ0cnVlIj48cGF0aCBkPSJNMjAuNTIgMy40OEExMS44IDExLjggMCAwIDAgMTIuMDggMEM1LjUgMCAuMTUgNS4zNS4xNSAxMS45M2MwIDIuMS41NSA0LjE1IDEuNiA1Ljk2TC4wNSAyNGw2LjI3LTEuNjRhMTEuOSAxMS45IDAgMCAwIDUuNzUgMS40N2guMDFDMTguNjUgMjMuODMgMjQgMTguNDggMjQgMTEuOWMwLTMuMTgtMS4yNC02LjE3LTMuNDgtOC40MlpNMTIuMDggMjEuODJhOS44NiA5Ljg2IDAgMCAxLTUuMDMtMS4zOGwtLjM2LS4yMS0zLjcyLjk4Ljk5LTMuNjItLjIzLS4zN2E5LjgyIDkuODIgMCAwIDEtMS41Mi01LjI5YzAtNS40NiA0LjQ0LTkuOSA5LjktOS45YTkuODIgOS44MiAwIDAgMSA3IDIuOSA5LjgzIDkuODMgMCAwIDEgMi45IDdjLS4wMSA1LjQ1LTQuNDUgOS44OS05LjkzIDkuODlabTUuNDMtNy40MmMtLjMtLjE1LTEuNzYtLjg3LTIuMDMtLjk3LS4yNy0uMS0uNDctLjE1LS42Ny4xNS0uMi4zLS43Ny45Ny0uOTQgMS4xNy0uMTcuMi0uMzUuMjItLjY1LjA3LS4zLS4xNS0xLjI1LS40Ni0yLjM4LTEuNDctLjg4LS43OC0xLjQ3LTEuNzUtMS42NC0yLjA0LS4xNy0uMy0uMDItLjQ2LjEzLS42LjEzLS4xMy4zLS4zNS40NS0uNTIuMTUtLjE3LjItLjMuMy0uNS4xLS4yLjA1LS4zNy0uMDMtLjUyLS4wNy0uMTUtLjY3LTEuNjEtLjkyLTIuMi0uMjQtLjU4LS40OS0uNS0uNjctLjUxaC0uNTdjLS4yIDAtLjUyLjA3LS43OS4zNy0uMjcuMy0xLjA0IDEuMDItMS4wNCAyLjQ4czEuMDcgMi44OCAxLjIyIDMuMDhjLjE1LjIgMi4xIDMuMiA1LjA4IDQuNDguNzEuMzEgMS4yNy40OSAxLjcuNjMuNzEuMjMgMS4zNi4yIDEuODcuMTIuNTctLjA5IDEuNzYtLjcyIDIuMDEtMS40MS4yNS0uNy4yNS0xLjMuMTctMS40Mi0uMDctLjEyLS4yNy0uMi0uNTctLjM1WiIvPjwvc3ZnPgogICAgICAgICAgICA8L2E+CiAgICAgICAgPC9kaXY+
+          CSS_B64: Ci5jdGFfX3NvY2lhbHMgewogICAgZGlzcGxheTogZmxleDsKICAgIGp1c3RpZnktY29udGVudDogY2VudGVyOwogICAgYWxpZ24taXRlbXM6IGNlbnRlcjsKICAgIGdhcDogMTRweDsKICAgIG1hcmdpbi10b3A6IDRweDsKfQouY3RhX19zb2NpYWwtbGluayB7CiAgICB3aWR0aDogNjhweDsKICAgIGhlaWdodDogNjhweDsKICAgIGJvcmRlci1yYWRpdXM6IDUwJTsKICAgIGRpc3BsYXk6IGlubGluZS1mbGV4OwogICAgYWxpZ24taXRlbXM6IGNlbnRlcjsKICAgIGp1c3RpZnktY29udGVudDogY2VudGVyOwogICAgYmFja2dyb3VuZDogdmFyKC0taW5rKTsKICAgIGNvbG9yOiB2YXIoLS15ZWxsb3cpOwogICAgdHJhbnNpdGlvbjogYmFja2dyb3VuZCAwLjNzIHZhcigtLWVhc2Utb3V0KSwgY29sb3IgMC4zcyB2YXIoLS1lYXNlLW91dCksIHRyYW5zZm9ybSAwLjNzIHZhcigtLWVhc2Utb3V0KTsKfQouY3RhX19zb2NpYWwtbGluayBzdmcgewogICAgd2lkdGg6IDI4cHg7CiAgICBoZWlnaHQ6IDI4cHg7CiAgICBmaWxsOiBjdXJyZW50Q29sb3I7Cn0KLmN0YV9fc29jaWFsLWxpbms6aG92ZXIgewogICAgYmFja2dyb3VuZDogdmFyKC0tcGFwZXIpOwogICAgY29sb3I6IHZhcigtLWluayk7CiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoLTNweCkgc2NhbGUoMS4wNCk7Cn0KQG1lZGlhIChtYXgtd2lkdGg6IDkwMHB4KSB7CiAgICAuY3RhX19zb2NpYWxzIHsgZ2FwOiAxMnB4OyB9CiAgICAuY3RhX19zb2NpYWwtbGluayB7IHdpZHRoOiA1OHB4OyBoZWlnaHQ6IDU4cHg7IH0KICAgIC5jdGFfX3NvY2lhbC1saW5rIHN2ZyB7IHdpZHRoOiAyNXB4OyBoZWlnaHQ6IDI1cHg7IH0KfQoK
         run: |
           python3 - <<'PY'
+          import os, base64
           from pathlib import Path
-
           p = Path('index.html')
           s = p.read_text(encoding='utf-8')
-
-          old = '''        <a href="mailto:adrianabrandingpe@gmail.com" class="cta__email" data-cursor="hover">adrianabrandingpe@gmail.com</a>'''
-          new = '''        <div class="cta__socials" aria-label="Canales de contacto">
-            <a href="mailto:adrianabrandingpe@gmail.com" class="cta__social-link" data-cursor="hover" aria-label="Enviar correo a Adriana Branding" title="Correo">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3V5Zm2 2v.6l7 5.25 7-5.25V7H5Zm14 10V10.1l-7 5.25-7-5.25V17h14Z"/></svg>
-            </a>
-            <a href="https://www.instagram.com/adriana.branding?igsi=MTBmMGRqbjdudnF1bA==" class="cta__social-link" data-cursor="hover" aria-label="Instagram de Adriana Branding" title="Instagram" target="_blank" rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9ZM17 5.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/></svg>
-            </a>
-            <a href="https://wa.me/51940708161" class="cta__social-link" data-cursor="hover" aria-label="WhatsApp de Adriana Branding: +51 940 708 161" title="WhatsApp" target="_blank" rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.52 3.48A11.8 11.8 0 0 0 12.08 0C5.5 0 .15 5.35.15 11.93c0 2.1.55 4.15 1.6 5.96L.05 24l6.27-1.64a11.9 11.9 0 0 0 5.75 1.47h.01C18.65 23.83 24 18.48 24 11.9c0-3.18-1.24-6.17-3.48-8.42ZM12.08 21.82a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.72.98.99-3.62-.23-.37a9.82 9.82 0 0 1-1.52-5.29c0-5.46 4.44-9.9 9.9-9.9a9.82 9.82 0 0 1 7 2.9 9.83 9.83 0 0 1 2.9 7c-.01 5.45-4.45 9.89-9.93 9.89Zm5.43-7.42c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.04-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.48.71.31 1.27.49 1.7.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35Z"/></svg>
-            </a>
-        </div>'''
-
+          old = base64.b64decode(os.environ['OLD_B64']).decode('utf-8')
+          new = base64.b64decode(os.environ['NEW_B64']).decode('utf-8')
+          css = base64.b64decode(os.environ['CSS_B64']).decode('utf-8')
           if old not in s:
               raise SystemExit('Expected CTA email button not found')
           s = s.replace(old, new, 1)
-
-          marker = '''/* ============================================================\n   FOOTER'''
-          css = '''
-.cta__socials {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 14px;
-    margin-top: 4px;
-}
-.cta__social-link {
-    width: 68px;
-    height: 68px;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--ink);
-    color: var(--yellow);
-    transition: background 0.3s var(--ease-out), color 0.3s var(--ease-out), transform 0.3s var(--ease-out);
-}
-.cta__social-link svg {
-    width: 28px;
-    height: 28px;
-    fill: currentColor;
-}
-.cta__social-link:hover {
-    background: var(--paper);
-    color: var(--ink);
-    transform: translateY(-3px) scale(1.04);
-}
-@media (max-width: 900px) {
-    .cta__socials { gap: 12px; }
-    .cta__social-link { width: 58px; height: 58px; }
-    .cta__social-link svg { width: 25px; height: 25px; }
-}
-
-'''
+          marker = '/* ============================================================\n   FOOTER'
           if marker not in s:
               raise SystemExit('Footer CSS marker not found')
           s = s.replace(marker, css + marker, 1)
-
           p.write_text(s, encoding='utf-8')
           PY
 
