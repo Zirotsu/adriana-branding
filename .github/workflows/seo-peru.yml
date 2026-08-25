@@ -1,0 +1,48 @@
+name: SEO Peru optimization
+
+on:
+  push:
+    paths:
+      - '.github/workflows/seo-peru.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  optimize-seo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Optimize index SEO for Peru
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+
+          s = s.replace('<html lang="es">', '<html lang="es-PE">', 1)
+
+          old_head = '''<title>Adriana — Branding · Diseño · Audiovisual</title>\n<meta name="description" content="Portafolio de Adriana — Diseñadora de Branding. Identidad visual, diseño gráfico y dirección de arte para marcas con carácter." />\n<link rel="icon" type="image/png" href="assets/logo/LOGOCUADRADO-01.png" />'''
+
+          new_head = '''<title>Adriana Branding | Branding, Diseño Gráfico y Audiovisual en Perú</title>\n<meta name="description" content="Adriana Branding ofrece servicios de branding, identidad visual, diseño gráfico, dirección de arte y contenido audiovisual para marcas y negocios en Perú." />\n<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />\n<meta name="author" content="Adriana Branding" />\n<meta name="geo.region" content="PE-LIM" />\n<meta name="geo.placename" content="Lima, Perú" />\n<link rel="canonical" href="https://adrianabranding.com/" />\n<link rel="alternate" hreflang="es-PE" href="https://adrianabranding.com/" />\n<link rel="alternate" hreflang="x-default" href="https://adrianabranding.com/" />\n\n<!-- Open Graph -->\n<meta property="og:type" content="website" />\n<meta property="og:locale" content="es_PE" />\n<meta property="og:site_name" content="Adriana Branding" />\n<meta property="og:title" content="Adriana Branding | Branding, Diseño Gráfico y Audiovisual en Perú" />\n<meta property="og:description" content="Branding, identidad visual, diseño gráfico, dirección de arte y contenido audiovisual para marcas y negocios en Perú." />\n<meta property="og:url" content="https://adrianabranding.com/" />\n<meta property="og:image" content="https://adrianabranding.com/assets/logo/LOGO-HERO-DARK.png" />\n<meta property="og:image:alt" content="Adriana Branding — Branding, diseño y audiovisual en Perú" />\n\n<!-- Twitter / social cards -->\n<meta name="twitter:card" content="summary_large_image" />\n<meta name="twitter:title" content="Adriana Branding | Branding, Diseño Gráfico y Audiovisual en Perú" />\n<meta name="twitter:description" content="Servicios creativos de branding, identidad visual, diseño gráfico y audiovisual para marcas en Perú." />\n<meta name="twitter:image" content="https://adrianabranding.com/assets/logo/LOGO-HERO-DARK.png" />\n\n<link rel="icon" type="image/png" href="assets/logo/LOGOCUADRADO-01.png" />\n\n<!-- Structured data: creative professional service in Peru -->\n<script type="application/ld+json">\n{\n  "@context": "https://schema.org",\n  "@type": "ProfessionalService",\n  "@id": "https://adrianabranding.com/#business",\n  "name": "Adriana Branding",\n  "url": "https://adrianabranding.com/",\n  "logo": "https://adrianabranding.com/assets/logo/LOGOCUADRADO-01.png",\n  "image": "https://adrianabranding.com/assets/logo/LOGO-HERO-DARK.png",\n  "description": "Servicios de branding, identidad visual, diseño gráfico, dirección de arte y contenido audiovisual para marcas y negocios en Perú.",\n  "email": "mailto:adrianabrandingpe@gmail.com",\n  "telephone": "+51940708161",\n  "address": {\n    "@type": "PostalAddress",\n    "addressLocality": "Lima",\n    "addressCountry": "PE"\n  },\n  "areaServed": {\n    "@type": "Country",\n    "name": "Perú"\n  },\n  "sameAs": [\n    "https://www.instagram.com/adriana.branding"\n  ],\n  "knowsAbout": [\n    "Branding",\n    "Identidad visual",\n    "Diseño gráfico",\n    "Dirección de arte",\n    "Contenido audiovisual",\n    "Diseño para redes sociales"\n  ]\n}\n</script>'''
+
+          if old_head not in s:
+              raise SystemExit('Expected original SEO head block not found')
+          s = s.replace(old_head, new_head, 1)
+
+          p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Commit SEO changes
+        shell: bash
+        run: |
+          rm -f .github/workflows/seo-peru.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Optimize Adriana Branding SEO for Peru"
+          git push origin HEAD:main
