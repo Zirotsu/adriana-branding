@@ -1,0 +1,44 @@
+name: Fix service page logo
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-service-page-logo.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix-logo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use the light-background logo on SEO service pages
+        shell: bash
+        run: |
+          for f in branding-peru/index.html diseno-grafico-peru/index.html contenido-audiovisual-peru/index.html; do
+            sed -i 's|/assets/logo/LOGOHORIZONTAL-NAV-DARK.png|/assets/logo/LOGOCHORIZONTAL-01.png|g' "$f"
+          done
+
+          # Keep the generator consistent in case these pages are regenerated later.
+          if [ -f scripts/expand_seo.py ]; then
+            sed -i 's|/assets/logo/LOGOHORIZONTAL-NAV-DARK.png|/assets/logo/LOGOCHORIZONTAL-01.png|g' scripts/expand_seo.py
+          fi
+
+          # Basic guard: the wrong dark-nav logo must no longer exist in generated service pages.
+          if grep -R 'LOGOHORIZONTAL-NAV-DARK.png' branding-peru/index.html diseno-grafico-peru/index.html contenido-audiovisual-peru/index.html; then
+            echo 'Wrong logo variant still present'
+            exit 1
+          fi
+
+      - name: Commit correction
+        shell: bash
+        run: |
+          rm -f .github/workflows/fix-service-page-logo.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Fix logo on SEO service pages"
+          git push origin HEAD:main
