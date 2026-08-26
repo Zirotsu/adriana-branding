@@ -63,7 +63,37 @@
     "Dirección de arte",
     "Contenido audiovisual",
     "Diseño para redes sociales"
-  ]
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Servicios creativos de Adriana Branding",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Branding e identidad visual en Perú",
+          "url": "https://adrianabranding.com/branding-peru/"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Diseño gráfico en Perú",
+          "url": "https://adrianabranding.com/diseno-grafico-peru/"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Contenido audiovisual en Perú",
+          "url": "https://adrianabranding.com/contenido-audiovisual-peru/"
+        }
+      }
+    ]
+  }
 }
 </script>
 
@@ -852,6 +882,66 @@ button { font-family: inherit; cursor: none; border: none; background: none; }
 @media (max-width: 900px) {
     .experience__grid { grid-template-columns: 1fr; gap: 50px; }
     .experience__role { font-size: 22px; }
+}
+
+/* ============================================================
+   SEO LOCAL — visible, editorial and integrated with the brand
+   ============================================================ */
+.seo-local {
+    padding: 90px 40px;
+    max-width: 1440px;
+    margin: 0 auto;
+    border-top: 1px solid var(--line);
+}
+.seo-local__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray-3);
+    margin-bottom: 24px;
+}
+.seo-local h2 {
+    max-width: 1100px;
+    font-family: var(--font-display);
+    font-size: clamp(38px, 5vw, 76px);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    font-weight: 400;
+    text-wrap: balance;
+}
+.seo-local h2 em { font-style: italic; font-weight: 400; }
+.seo-local p {
+    max-width: 800px;
+    margin-top: 32px;
+    font-size: clamp(16px, 1.4vw, 20px);
+    line-height: 1.6;
+    color: var(--gray-3);
+}
+.seo-local__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 34px;
+}
+.seo-local__links a {
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    padding: 11px 18px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background .25s var(--ease-out), color .25s var(--ease-out), transform .25s var(--ease-out);
+}
+.seo-local__links a:hover {
+    background: var(--ink);
+    color: var(--paper);
+    transform: translateY(-2px);
+}
+.service__title a { display: inline-block; }
+@media (max-width: 900px) {
+    .seo-local { padding: 70px 20px; }
+    .seo-local__links { flex-direction: column; align-items: flex-start; }
 }
 
 /* ============================================================
@@ -1959,7 +2049,7 @@ button { font-family: inherit; cursor: none; border: none; background: none; }
 
     <div class="hero__bottom">
         <p class="hero__intro">
-            Construyo identidades visuales que <em>respiran</em>, comunican y permanecen. Branding estratégico para marcas que quieren dejar de parecerse a las demás.
+            Branding, identidad visual, diseño gráfico y contenido audiovisual para marcas en <strong>Perú</strong>. Construyo sistemas visuales que <em>respiran</em>, comunican y permanecen.
         </p>
         <div class="hero__scroll">
             Scroll
@@ -2124,6 +2214,18 @@ button { font-family: inherit; cursor: none; border: none; background: none; }
     </div>
 </section>
 
+<!-- ============================================================ SEO LOCAL / PERÚ -->
+<section class="seo-local" aria-labelledby="seo-local-title">
+    <div class="seo-local__eyebrow">Estudio creativo · Lima, Perú</div>
+    <h2 id="seo-local-title">Branding, diseño gráfico y contenido audiovisual <em>para marcas en Perú</em>.</h2>
+    <p>Adriana Branding acompaña a negocios, emprendimientos y marcas que necesitan construir una identidad clara y llevarla de forma coherente a piezas gráficas, redes sociales y contenido en movimiento. El trabajo se desarrolla desde Lima y está disponible para proyectos en todo Perú.</p>
+    <nav class="seo-local__links" aria-label="Servicios creativos en Perú">
+        <a href="/branding-peru/" data-cursor="hover">Branding en Perú ↗</a>
+        <a href="/diseno-grafico-peru/" data-cursor="hover">Diseño gráfico en Perú ↗</a>
+        <a href="/contenido-audiovisual-peru/" data-cursor="hover">Contenido audiovisual en Perú ↗</a>
+    </nav>
+</section>
+
 <!-- ============================================================ SERVICES -->
 <section class="section services" id="services">
     <div class="section__header">
@@ -2147,7 +2249,7 @@ button { font-family: inherit; cursor: none; border: none; background: none; }
                 </div>
             </div>
             <div class="service__bottom">
-                <h3 class="service__title">Brand<em>ing</em></h3>
+                <h3 class="service__title"><a href="/branding-peru/" data-cursor="hover">Brand<em>ing</em></a></h3>
                 <p class="service__desc">Identidad completa: investigación, naming, logo, paleta, tipografía y manual de uso. Construimos la marca desde su núcleo.</p>
                 <div class="service__tags">
                     <span class="service__tag">Logo</span>
@@ -2169,7 +2271,7 @@ button { font-family: inherit; cursor: none; border: none; background: none; }
                 </div>
             </div>
             <div class="service__bottom">
-                <h3 class="service__title">Dise<em>ño</em></h3>
+                <h3 class="service__title"><a href="/diseno-grafico-peru/" data-cursor="hover">Dise<em>ño</em></a></h3>
                 <p class="service__desc">Piezas gráficas que sostienen y amplifican la marca: flyers, banners, redes, packaging y editorial. Cada formato con su lenguaje.</p>
                 <div class="service__tags">
                     <span class="service__tag">Flyers</span>
@@ -2190,7 +2292,7 @@ button { font-family: inherit; cursor: none; border: none; background: none; }
                 </div>
             </div>
             <div class="service__bottom">
-                <h3 class="service__title">Audio<em>visual</em></h3>
+                <h3 class="service__title"><a href="/contenido-audiovisual-peru/" data-cursor="hover">Audio<em>visual</em></a></h3>
                 <p class="service__desc">Edición de video, reels y motion graphics para redes. Llevamos la identidad visual al movimiento sin perder consistencia.</p>
                 <div class="service__tags">
                     <span class="service__tag">Reels</span>
